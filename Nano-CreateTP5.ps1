@@ -64,7 +64,7 @@ $value = YesNoPrompt
 if ($value -eq "Y" -or $value -eq "y")
 {
     # Create the new Nano Server VHDX
-    New-NanoServerImage -Edition Standard -DeploymentType Guest -MediaPath $isoPath -BasePath $basePath -TargetPath $targetPath -ComputerName $serverName -Packages Microsoft-NanoServer-IIS-Package -EnableRemoteManagementPort -CopyFiles .\Tools -SetupCompleteCommands 'powershell -noexit "& ""C:\Tools\Setup.ps1"""'
+    New-NanoServerImage -Edition Standard -DeploymentType Guest -MediaPath $isoPath -BasePath $basePath -TargetPath $targetPath -ComputerName $serverName -Packages Microsoft-NanoServer-IIS-Package -EnableRemoteManagementPort -CopyFiles .\Tools -SetupCompleteCommands 'powershell "& ""C:\Tools\Setup.ps1"""'
 
     # Create a new VM and using the VHDX created above.
     New-VM -Name $serverName -Generation 2 -MemoryStartupBytes $vhdMinBytes -VHDPath $targetPath -SwitchName "Internal Virtual Switch"
